@@ -65,7 +65,6 @@ td.tba{background:#ddd5bf}
 <h1>Weekly Staff Schedule</h1><div class="sub" id="sub"></div>
 <div class="nav"><button class="btn arrow" id="prev">‹</button><div class="range" id="range"></div><button class="btn arrow" id="next">›</button><button class="btn dark" id="today">Today</button><button class="btn" id="shot">Save image</button></div>
 <div class="mbar" id="mbar"><button class="btn" id="aStaff">+ Add staff</button><button class="btn" id="cWeek">Copy last week</button><button class="btn" id="bWeek">Blank week</button><button class="btn dark" id="pub">Publish to GitHub</button><button class="btn" id="gs">GitHub settings</button><button class="btn" id="dj">Download JSON</button><span id="st" style="align-self:center;font-size:13px"></span></div>
-<div class="legend"><span><i class="sm"></i>Morning (before 12 PM)</span><span><i class="sa"></i>Afternoon (12–5 PM)</span><span><i class="se"></i>Evening (5–9 PM)</span><span><i class="sn"></i>Night (9 PM+)</span><span><i class="off"></i>Off</span><span><i class="tba"></i>TBA</span></div>
 <div id="app"></div>
 </div>
 <div class="hint" id="hint"></div>
@@ -95,7 +94,7 @@ function norm(v){v=v.trim();if(!v||/^off$/i.test(v))return 'OFF';if(/^tba$/i.tes
 function r1(n){return Math.round(n*10)/10}
 var TC=[['#f0c29a','#f8e3d1'],['#bcd9b6','#e1efdd'],['#bccbe8','#dfe7f4'],['#e6bcd4','#f3dfeb'],['#e3d98f','#f2edc9']];
 function tc(t,k){return TC[Math.max(0,D.teams.indexOf(t))%TC.length][k]}
-function sc(v){if(v==='OFF')return' off';if(v==='TBA')return' tba';var m=/^(\d+):\d\d (AM|PM) - /.exec(v);if(!m)return'';var h=+m[1]%12+(m[2]==='PM'?12:0);return h<12?' sm':h<17?' sa':h<21?' se':' sn'}
+function sc(v){if(v==='OFF')return' off';if(v==='TBA')return' tba';return''}
 function render(){
  $('loc').textContent=D.loc;
  var e=new Date(ws);e.setDate(e.getDate()+6),M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
