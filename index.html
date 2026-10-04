@@ -64,7 +64,7 @@ td.tba{background:#ddd5bf}
 <div class="band"><span id="loc"></span><span>Biryaniwalla</span><span>Please check your shifts carefully</span></div>
 <h1>Weekly Staff Schedule</h1><div class="sub" id="sub"></div>
 <div class="nav"><button class="btn arrow" id="prev">‹</button><div class="range" id="range"></div><button class="btn arrow" id="next">›</button><button class="btn dark" id="today">Today</button><button class="btn" id="shot">Save image</button></div>
-<div class="mbar" id="mbar"><button class="btn" id="aStaff">+ Add staff</button><button class="btn" id="cWeek">Copy last week</button><button class="btn" id="bWeek">Blank week</button><button class="btn" id="gs">GitHub settings</button><button class="btn" id="dj">Download JSON</button></div>
+<div class="mbar" id="mbar"><button class="btn" id="aStaff">+ Add staff</button><button class="btn" id="cWeek">Copy last week</button><button class="btn" id="bWeek">Blank week</button><button class="btn" id="lo">Log out</button><button class="btn" id="dj">Download JSON</button></div>
 <div id="app"></div>
 </div>
 <div class="box" id="pay" style="display:none"></div>
@@ -73,7 +73,7 @@ td.tba{background:#ddd5bf}
 </div>
 <div class="ov" id="ov"><div class="modal"><h2 id="mt"></h2><input id="mi" autocomplete="off"><div class="chips" id="mc"></div><div class="row"><button class="btn" id="md">Delete</button><button class="btn" id="mx">Cancel</button><button class="btn dark" id="ms">Save</button></div></div></div>
 <div class="ov" id="tm"><div class="modal"><h2 id="tt"></h2><div id="tl" style="display:none"><input id="tli" placeholder="Days, e.g. Sunday – Thursday"><div class="chips" id="tlc"></div></div><div class="chips" id="tq"></div><label>Start</label><select id="ts"></select><label>End</label><select id="te"></select><div class="row"><button class="btn" id="td">Delete</button><button class="btn" id="tx">Cancel</button><button class="btn dark" id="tsv">Save</button></div></div></div>
-<div class="ov" id="gm"><div class="modal"><h2>GitHub publishing</h2><label>Repository (owner/name)</label><input id="gr" placeholder="yourname/biryaniwalla-schedule"><label>Branch</label><input id="gb" value="main"><label>Access token</label><input id="gt" type="password" placeholder="Fine-grained token (Contents: read &amp; write)"><div class="row"><button class="btn" id="gx">Cancel</button><button class="btn dark" id="gsv">Save</button></div></div></div>
+<div class="ov" id="gm"><div class="modal"><h2>Manager login</h2><label>GitHub access token</label><input id="gt" type="password" placeholder="Paste your token" autocomplete="off"><label>Repository</label><input id="gr"><label>Branch</label><input id="gb" value="main"><div id="ge" style="color:#a00;font-size:14px;min-height:18px;margin-bottom:8px"></div><div class="row"><button class="btn" id="gx">Cancel</button><button class="btn dark" id="gsv">Login</button></div></div></div>
 <div class="pubbar" id="pubbar"><span id="st">No unpublished changes</span><button id="pub">Publish schedule</button></div>
 <script type="application/json" id="data">{"loc": "Niagara Falls", "teams": ["Kitchen Team", "Back Kitchen", "FOH"], "staff": [{"id": "s0", "team": "Kitchen Team", "name": "Sandeep"}, {"id": "s1", "team": "Kitchen Team", "name": "Altaf"}, {"id": "s2", "team": "Kitchen Team", "name": "Binay"}, {"id": "s3", "team": "Kitchen Team", "name": "Firoz"}, {"id": "s4", "team": "Back Kitchen", "name": "Jobin"}, {"id": "s5", "team": "Back Kitchen", "name": "Amal"}, {"id": "s6", "team": "FOH", "name": "Jasveen"}, {"id": "s7", "team": "FOH", "name": "Zakaria"}, {"id": "s8", "team": "FOH", "name": "Gurdip"}, {"id": "s9", "team": "FOH", "name": "Jaspreet"}, {"id": "s10", "team": "FOH", "name": "Komal"}, {"id": "s11", "team": "FOH", "name": "Anjaly"}], "weeks": {"2026-09-28": {"s0": [["9:00 AM - 8:00 PM", "9:00 AM - 6:00 PM", "9:00 AM - 7:00 PM", "11:00 AM - 9:00 PM", "9:00 AM - 8:00 PM", "1:00 PM - 10:00 PM", "OFF"]], "s1": [["OFF", "6:00 PM - 2:00 AM", "OFF", "OFF", "OFF", "9:00 AM - 1:00 PM", "9:00 AM - 9:00 PM"], ["OFF", "OFF", "7:00 PM - 2:00 AM", "7:00 PM - 2:00 AM", "7:00 PM - 2:00 AM", "7:00 PM - 2:00 AM", "OFF"]], "s2": [["OFF", "OFF", "OFF", "OFF", "OFF", "OFF", "OFF"]], "s3": [["7:00 PM - 2:00 AM", "8:00 PM - 2:00 AM", "OFF", "8:00 PM - 2:00 AM", "8:00 PM - 3:00 AM", "8:00 PM - 3:00 AM", "7:00 PM - 2:00 AM"]], "s4": [["10:00 AM - 2:00 AM", "10:00 AM - 2:00 AM", "10:00 AM - 2:00 AM", "10:00 AM - 2:00 AM", "TBA", "TBA", "TBA"]], "s5": [["OFF", "OFF", "OFF", "9:00 AM - 12:00 PM", "8:00 PM - 3:00 AM", "10:00 PM - 3:00 AM", "8:00 PM - 2:00 AM"], ["8:00 PM - 2:00 AM", "OFF", "8:00 PM - 2:00 AM", "OFF", "OFF", "OFF", "OFF"]], "s6": [["OFF", "OFF", "OFF", "11:00 AM - 9:00 PM", "11:00 AM - 6:00 PM", "OFF", "OFF"], ["11:00 AM - 8:00 PM", "11:00 AM - 8:00 PM", "11:00 AM - 8:00 PM", "OFF", "OFF", "OFF", "OFF"]], "s7": [["OFF", "OFF", "OFF", "8:00 PM - 2:00 AM", "5:00 PM - 3:00 AM", "7:00 PM - 3:00 AM", "OFF"]], "s8": [["OFF", "OFF", "OFF", "OFF", "OFF", "OFF", "OFF"]], "s9": [["OFF", "OFF", "OFF", "OFF", "OFF", "OFF", "OFF"]], "s10": [["8:00 PM - 2:00 AM", "OFF", "8:00 PM - 2:00 AM", "OFF", "8:00 PM - 3:00 AM", "OFF", "8:00 PM - 2:00 AM"]], "s11": [["OFF", "8:00 PM - 2:00 AM", "OFF", "OFF", "OFF", "11:00 PM - 7:00 AM", "11:00 PM - 7:00 AM"]]}}, "ops": [{"days": "Sunday – Thursday", "open": "9:00 AM", "close": "2:00 AM"}, {"days": "Friday & Saturday", "open": "9:00 AM", "close": "3:00 AM"}], "notes": ["Please be on the scheduled time. If any delay, please inform Chef Sandeep.", "If required to stay longer due to busy needs, it must be updated in the WhatsApp group with reasoning, otherwise pay will be given as per schedule only.", "One meal is allowed for less than 6 hours shift, two meals is allowed for 10 hours or longer shifts.", "15% discount will be provided for all employees in case they want to purchase any extra meals.", "Alcohol/Cannabis consumption in the premises is strictly prohibited, if found will be fired immediately.", "Any team member issues / team management needs to be informed to Sangeet Ahuja.", "Any issues related to operational/managerial issues need to be updated to Sangeet Ahuja.", "If any team member has major concerns which cannot be resolved by above personnel, please feel free to reach out to Manav Behl and Siddhant Chaudhary."]}</script>
 <script>
@@ -183,7 +183,6 @@ $('bWeek').onclick=function(){D.weeks[key()]={};D.staff.forEach(function(s){D.we
 $('prev').onclick=function(){ws.setDate(ws.getDate()-7);render()};
 $('next').onclick=function(){ws.setDate(ws.getDate()+7);render()};
 $('today').onclick=function(){ws=mon(new Date());render()};
-$('mgr').onclick=function(){mgr=!mgr;render()};
 var GK='bw-gh',G={};try{G=JSON.parse(localStorage.getItem(GK))||{}}catch(e){}
 var PK='bw-payroll',P={rates:{},sales:{},target:30,ot:false};
 try{P=Object.assign(P,JSON.parse(localStorage.getItem(PK))||{})}catch(e){}
@@ -213,23 +212,38 @@ function mig(){D.ops=D.ops.map(function(o){return typeof o==='string'?{days:o,op
 function pretty(){return JSON.stringify(D,null,1)}
 function dl(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove()}
 $('dj').onclick=function(){dl(new Blob([pretty()],{type:'application/json'}),'schedule.json')};
-$('gs').onclick=function(){$('gr').value=G.repo||'';$('gb').value=G.branch||'main';$('gt').value=G.token||'';$('gm').classList.add('on')};
+function defRepo(){var h=location.hostname,p=location.pathname.split('/')[1];return /github\.io$/.test(h)&&p?h.split('.')[0]+'/'+p:'AhujaSangeet/Biryaniwalla-Schedule'}
 $('gx').onclick=function(){$('gm').classList.remove('on')};
-$('gsv').onclick=function(){G={repo:$('gr').value.trim(),branch:$('gb').value.trim()||'main',token:$('gt').value.trim()};try{localStorage.setItem(GK,JSON.stringify(G))}catch(e){}$('gm').classList.remove('on')};
+function openLogin(){$('gr').value=G.repo||defRepo();$('gb').value=G.branch||'main';$('gt').value='';$('ge').textContent='';$('gm').classList.add('on');$('gt').focus()}
+$('mgr').onclick=function(){if(mgr){mgr=false;render()}else if(G.token){mgr=true;render()}else openLogin()};
+$('lo').onclick=function(){if(dirty&&!window.confirm('You have unpublished changes. Log out anyway?'))return;G={repo:G.repo,branch:G.branch};try{localStorage.setItem(GK,JSON.stringify(G))}catch(e){}dirty=false;mgr=false;$('st').textContent='No unpublished changes';render()};
+$('gt').onkeydown=function(e){if(e.key==='Enter')$('gsv').click()};
+$('gsv').onclick=async function(){
+ var tk=$('gt').value.trim(),rp=$('gr').value.trim(),br=$('gb').value.trim()||'main',er=$('ge');
+ if(!tk){er.textContent='Paste your token first';return}
+ er.textContent='Checking…';
+ try{
+  var r=await fetch('https://api.github.com/repos/'+rp,{headers:{Authorization:'Bearer '+tk,Accept:'application/vnd.github+json'}});
+  if(r.status===401){er.textContent='Invalid or expired token';return}
+  if(!r.ok){er.textContent='Repository not found, or the token has no access to it';return}
+  var j=await r.json();
+  if(j.permissions&&j.permissions.push===false){er.textContent='Token needs Contents: Read and write';return}
+  G={repo:rp,branch:br,token:tk};try{localStorage.setItem(GK,JSON.stringify(G))}catch(e){}
+  $('gm').classList.remove('on');mgr=true;render();
+ }catch(e){er.textContent='Could not reach GitHub. Check your connection.'}};
 $('pub').onclick=async function(){
- if(!G.repo||!G.token){$('st').textContent='Add your GitHub details first';$('gs').click();return}
+ if(!G.repo||!G.token){openLogin();return}
  $('st').textContent='Publishing…';
  var u='https://api.github.com/repos/'+G.repo+'/contents/schedule.json',H={Authorization:'Bearer '+G.token,Accept:'application/vnd.github+json'};
  try{
   var sha,r=await fetch(u+'?ref='+encodeURIComponent(G.branch),{headers:H});
-  if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error(r.status===401?'bad token':r.status===403?'token lacks access':'repo not found');
+  if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error(r.status===401?'token expired - log out and log in again':r.status===403?'token lacks access':'repo not found');
   var body={message:'Update schedule',branch:G.branch,content:btoa(unescape(encodeURIComponent(pretty())))};if(sha)body.sha=sha;
   r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify(body)});
   if(!r.ok)throw new Error('GitHub said '+r.status);
   dirty=false;$('st').textContent='Published ✓ — live on the site in about a minute';
  }catch(e){$('st').textContent='Could not publish: '+e.message}
 };
-$('mgr').onclick=function(){mgr=!mgr;render()};
 window.onbeforeunload=function(){return dirty?'Unpublished changes':undefined};
 $('shot').onclick=async function(){
  var b=$('shot');b.textContent='Saving…';
