@@ -1,0 +1,255 @@
+{
+ "loc": "Niagara Falls",
+ "teams": [
+  "Kitchen Team",
+  "Back Kitchen",
+  "FOH"
+ ],
+ "staff": [
+  {
+   "id": "s0",
+   "team": "Kitchen Team",
+   "name": "Sandeep"
+  },
+  {
+   "id": "s1",
+   "team": "Kitchen Team",
+   "name": "Altaf"
+  },
+  {
+   "id": "s2",
+   "team": "Kitchen Team",
+   "name": "Binay"
+  },
+  {
+   "id": "s3",
+   "team": "Kitchen Team",
+   "name": "Firoz"
+  },
+  {
+   "id": "s4",
+   "team": "Back Kitchen",
+   "name": "Jobin"
+  },
+  {
+   "id": "s5",
+   "team": "Back Kitchen",
+   "name": "Amal"
+  },
+  {
+   "id": "s6",
+   "team": "FOH",
+   "name": "Jasveen"
+  },
+  {
+   "id": "s7",
+   "team": "FOH",
+   "name": "Zakaria"
+  },
+  {
+   "id": "s8",
+   "team": "FOH",
+   "name": "Gurdip"
+  },
+  {
+   "id": "s9",
+   "team": "FOH",
+   "name": "Jaspreet"
+  },
+  {
+   "id": "s10",
+   "team": "FOH",
+   "name": "Komal"
+  },
+  {
+   "id": "s11",
+   "team": "FOH",
+   "name": "Anjaly"
+  }
+ ],
+ "weeks": {
+  "2026-09-28": {
+   "s0": [
+    [
+     "9:00 AM - 8:00 PM",
+     "9:00 AM - 6:00 PM",
+     "9:00 AM - 7:00 PM",
+     "11:00 AM - 9:00 PM",
+     "9:00 AM - 8:00 PM",
+     "1:00 PM - 10:00 PM",
+     "OFF"
+    ]
+   ],
+   "s1": [
+    [
+     "OFF",
+     "6:00 PM - 2:00 AM",
+     "OFF",
+     "OFF",
+     "OFF",
+     "9:00 AM - 1:00 PM",
+     "9:00 AM - 9:00 PM"
+    ],
+    [
+     "OFF",
+     "OFF",
+     "7:00 PM - 2:00 AM",
+     "7:00 PM - 2:00 AM",
+     "7:00 PM - 2:00 AM",
+     "7:00 PM - 2:00 AM",
+     "OFF"
+    ]
+   ],
+   "s2": [
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF"
+    ]
+   ],
+   "s3": [
+    [
+     "7:00 PM - 2:00 AM",
+     "8:00 PM - 2:00 AM",
+     "OFF",
+     "8:00 PM - 2:00 AM",
+     "8:00 PM - 3:00 AM",
+     "8:00 PM - 3:00 AM",
+     "7:00 PM - 2:00 AM"
+    ]
+   ],
+   "s4": [
+    [
+     "10:00 AM - 2:00 AM",
+     "10:00 AM - 2:00 AM",
+     "10:00 AM - 2:00 AM",
+     "10:00 AM - 2:00 AM",
+     "TBA",
+     "TBA",
+     "TBA"
+    ]
+   ],
+   "s5": [
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "9:00 AM - 12:00 PM",
+     "8:00 PM - 3:00 AM",
+     "10:00 PM - 3:00 AM",
+     "8:00 PM - 2:00 AM"
+    ],
+    [
+     "8:00 PM - 2:00 AM",
+     "OFF",
+     "8:00 PM - 2:00 AM",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF"
+    ]
+   ],
+   "s6": [
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "11:00 AM - 9:00 PM",
+     "11:00 AM - 6:00 PM",
+     "OFF",
+     "OFF"
+    ],
+    [
+     "11:00 AM - 8:00 PM",
+     "11:00 AM - 8:00 PM",
+     "11:00 AM - 8:00 PM",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF"
+    ]
+   ],
+   "s7": [
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "8:00 PM - 2:00 AM",
+     "5:00 PM - 3:00 AM",
+     "7:00 PM - 3:00 AM",
+     "OFF"
+    ]
+   ],
+   "s8": [
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF"
+    ]
+   ],
+   "s9": [
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF"
+    ]
+   ],
+   "s10": [
+    [
+     "8:00 PM - 2:00 AM",
+     "OFF",
+     "8:00 PM - 2:00 AM",
+     "OFF",
+     "8:00 PM - 3:00 AM",
+     "OFF",
+     "8:00 PM - 2:00 AM"
+    ]
+   ],
+   "s11": [
+    [
+     "OFF",
+     "8:00 PM - 2:00 AM",
+     "OFF",
+     "OFF",
+     "OFF",
+     "11:00 PM - 7:00 AM",
+     "11:00 PM - 7:00 AM"
+    ]
+   ]
+  }
+ },
+ "ops": [
+  {
+   "days": "Sunday – Thursday",
+   "open": "9:00 AM",
+   "close": "2:00 AM"
+  },
+  {
+   "days": "Friday & Saturday",
+   "open": "9:00 AM",
+   "close": "3:00 AM"
+  }
+ ],
+ "notes": [
+  "Please be on the scheduled time. If any delay, please inform Chef Sandeep.",
+  "If required to stay longer due to busy needs, it must be updated in the WhatsApp group with reasoning, otherwise pay will be given as per schedule only.",
+  "One meal is allowed for less than 6 hours shift, two meals is allowed for 10 hours or longer shifts.",
+  "15% discount will be provided for all employees in case they want to purchase any extra meals.",
+  "Alcohol/Cannabis consumption in the premises is strictly prohibited, if found will be fired immediately.",
+  "Any team member issues / team management needs to be informed to Sangeet Ahuja.",
+  "Any issues related to operational/managerial issues need to be updated to Sangeet Ahuja.",
+  "If any team member has major concerns which cannot be resolved by above personnel, please feel free to reach out to Manav Behl and Siddhant Chaudhary."
+ ]
+}
