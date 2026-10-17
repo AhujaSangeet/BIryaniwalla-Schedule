@@ -72,7 +72,7 @@ td.tba{background:#e2e2e2}
 <div class="hint" id="hint"></div>
 <div class="hint"><button class="btn" id="mgr" style="font-size:12px;padding:3px 10px">Manager</button></div>
 </div>
-<div class="ov" id="ov"><div class="modal"><h2 id="mt"></h2><input id="mi" autocomplete="off"><div class="chips" id="mc"></div><div class="row"><button class="btn" id="md">Delete</button><button class="btn" id="mx">Cancel</button><button class="btn dark" id="ms">Save</button></div></div></div>
+<div class="ov" id="ov"><div class="modal"><h2 id="mt"></h2><input id="mi" autocomplete="off"><input id="mr" type="number" min="0" step="0.01" placeholder="Hourly pay ($/hr)" style="display:none"><div class="chips" id="mc"></div><div class="row"><button class="btn" id="md">Delete</button><button class="btn" id="mx">Cancel</button><button class="btn dark" id="ms">Save</button></div></div></div>
 <div class="ov" id="tm"><div class="modal"><h2 id="tt"></h2><div id="tl" style="display:none"><input id="tli" placeholder="Days, e.g. Sunday – Thursday"><div class="chips" id="tlc"></div></div><div class="chips" id="tq"></div><label>Start</label><select id="ts"></select><label>End</label><select id="te"></select><div class="row"><button class="btn" id="td">Delete</button><button class="btn" id="tx">Cancel</button><button class="btn dark" id="tsv">Save</button></div></div></div>
 <div class="ov" id="gm"><div class="modal"><h2>Manager login</h2><label>GitHub access token</label><input id="gt" type="password" placeholder="Paste your token" autocomplete="off"><label>Repository</label><input id="gr"><label>Branch</label><input id="gb" value="main"><div id="ge" style="color:#a00;font-size:14px;min-height:18px;margin-bottom:8px"></div><div class="row"><button class="btn" id="gx">Cancel</button><button class="btn dark" id="gsv">Login</button></div></div></div>
 <div class="pubbar" id="pubbar"><span id="st">No unpublished changes</span><button id="pub">Publish schedule</button></div>
@@ -122,7 +122,7 @@ function render(){
     ls.forEach(function(l,li){
      h+='<tr>';
      if(first){h+='<td class="team" style="background:'+tc(t,0)+'" rowspan="'+n+'">'+esc(t)+'</td>';first=false}
-     if(li===0)h+='<td class="name" style="background:'+tc(t,1)+'" rowspan="'+ls.length+'" data-s="'+s.id+'">'+esc(s.name)+(mgr?'<span class="ln" data-add="'+s.id+'">+ split shift</span>':'')+'</td>';
+     if(li===0)h+='<td class="name" style="background:'+tc(t,1)+'" rowspan="'+ls.length+'" data-s="'+s.id+'">'+esc(s.name)+(mgr?'<span class="ln" data-add="'+s.id+'">+ split shift</span><span class="ln" data-rm="'+s.id+'">Remove employee</span>':'')+'</td>';
      l.forEach(function(v,di){var c=hrs(v);tot+=c;dt[di]+=c;
       h+='<td class="cell'+sc(v)+'" data-s="'+s.id+'" data-l="'+li+'" data-d="'+di+'">'+esc(v)+'</td>'});
      if(li===0)h+='<td class="hrs" rowspan="'+ls.length+'">@@'+s.id+'@@</td>';
@@ -137,7 +137,7 @@ function render(){
 }
 var cb=null,cd=null,tmp=null;
 function modal(title,val,chips,onSave,onDel,onChip,sel){
- $('mt').textContent=title;$('mi').value=val;$('mc').innerHTML='';
+ $('mt').textContent=title;$('mi').value=val;$('mr').style.display='none';$('mc').innerHTML='';
  (chips||[]).forEach(function(c){var b=document.createElement('button');b.className='btn'+(c===sel?' sel':'');b.textContent=c;b.onclick=function(){if(onChip){onChip(c);[].forEach.call($('mc').children,function(x){x.classList.remove('sel')});b.classList.add('sel')}else $('mi').value=c};$('mc').appendChild(b)});
  $('md').style.display=onDel?'':'none';cb=onSave;cd=onDel;$('ov').classList.add('on');$('mi').focus();
 }
@@ -164,12 +164,17 @@ function opsModal(i){var o=i==null?{days:'',open:'9:00 AM',close:'2:00 AM'}:D.op
  timeModal(i==null?'Add operational hours':'Edit operational hours',o.open,o.close,{label:o.days,
   onSave:function(a,b,l){if(!l)return;var n={days:l,open:a,close:b};if(i==null)D.ops.push(n);else D.ops[i]=n;chg()},
   onDel:i==null?null:function(){D.ops.splice(i,1);chg()}})}
-function staffModal(s){var team=s.team;modal('Edit staff',s.name,D.teams,function(v){if(v.trim()){s.name=v.trim();s.team=team;chg()}},function(){D.staff=D.staff.filter(function(x){return x!==s});chg()},function(c){team=c},s.team)}
+function blank(){return ['OFF','OFF','OFF','OFF','OFF','OFF','OFF']}
+function ens(W,id){return W[id]||(W[id]=[blank()])}
+function rmStaff(id){var s=D.staff.filter(function(x){return x.id===id})[0];if(!s||!window.confirm('Remove '+s.name+' from the schedule? This cannot be undone.'))return;
+ D.staff=D.staff.filter(function(x){return x.id!==id});Object.keys(D.weeks).forEach(function(k){delete D.weeks[k][id]});delete P.rates[id];psave();chg()}
+function staffModal(s){var team=s.team;modal('Edit staff',s.name,D.teams,function(v){if(v.trim()){s.name=v.trim();s.team=team;P.rates[s.id]=parseFloat($('mr').value)||0;psave();chg()}},function(){rmStaff(s.id)},function(c){team=c},s.team);$('mr').style.display='';$('mr').value=P.rates[s.id]||''}
 $('app').onclick=function(e){
  if(!mgr)return;var t=e.target,W=D.weeks[key()];
- if(t.dataset.add){var a=W[t.dataset.add]||(W[t.dataset.add]=[]);a.push(['OFF','OFF','OFF','OFF','OFF','OFF','OFF']);chg();return}
+ if(t.dataset.rm){rmStaff(t.dataset.rm);return}
+ if(t.dataset.add){var a=ens(W,t.dataset.add);a.push(['OFF','OFF','OFF','OFF','OFF','OFF','OFF']);chg();return}
  var c=t.closest('[data-d]');
- if(c){var s=D.staff.filter(function(x){return x.id===c.dataset.s})[0],l=+c.dataset.l,d=+c.dataset.d,arr=W[s.id];
+ if(c){var s=D.staff.filter(function(x){return x.id===c.dataset.s})[0],l=+c.dataset.l,d=+c.dataset.d,arr=ens(W,s.id);
   var m=/^(.+) - (.+)$/.exec(arr[l][d]);
   timeModal(s.name+' · '+DAYS[d],m?m[1]:'9:00 AM',m?m[2]:'5:00 PM',{quick:['OFF','TBA'],onQuick:function(q){arr[l][d]=q;if(l>0&&arr.length>1&&arr[l].every(function(x){return x==='OFF'}))arr.splice(l,1);chg()},onSave:function(a,b){arr[l][d]=a+' - '+b;chg()}});return}
  var n=t.closest('[data-s]');if(n&&n.className==='name'){staffModal(D.staff.filter(function(x){return x.id===n.dataset.s})[0]);return}
@@ -178,7 +183,7 @@ $('app').onclick=function(e){
  var o=t.closest('[data-o]');if(o){opsModal(+o.dataset.o);return}
  var li=t.closest('[data-n]');if(li){var i=+li.dataset.n;modal('Edit note',D.notes[i],null,function(v){if(v.trim())D.notes[i]=v.trim();chg()},function(){D.notes.splice(i,1);chg()})}
 };
-$('aStaff').onclick=function(){var team=D.teams[0];modal('Add staff','',D.teams,function(v){if(v.trim()){D.staff.push({id:'s'+Date.now(),team:team,name:v.trim()});chg()}},null,function(c){team=c},team)};
+$('aStaff').onclick=function(){var team=D.teams[0];modal('Add staff','',D.teams,function(v){if(v.trim()){var id='s'+Date.now();D.staff.push({id:id,team:team,name:v.trim()});P.rates[id]=parseFloat($('mr').value)||0;psave();if(D.weeks[key()])ens(D.weeks[key()],id);chg()}},null,function(c){team=c},team);$('mr').style.display='';$('mr').value=''};
 $('cWeek').onclick=function(){var ks=Object.keys(D.weeks).sort(),p=ks.filter(function(k){return k<key()}).pop()||ks.pop();
  D.weeks[key()]=p?JSON.parse(JSON.stringify(D.weeks[p])):{};chg()};
 $('bWeek').onclick=function(){D.weeks[key()]={};D.staff.forEach(function(s){D.weeks[key()][s.id]=[['OFF','OFF','OFF','OFF','OFF','OFF','OFF']]});chg()};
