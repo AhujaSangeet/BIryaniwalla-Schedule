@@ -47,11 +47,6 @@
    "name": "Gurdip"
   },
   {
-   "id": "s9",
-   "team": "FOH",
-   "name": "Jaspreet"
-  },
-  {
    "id": "s10",
    "team": "FOH",
    "name": "Komal"
@@ -190,17 +185,6 @@
     ]
    ],
    "s8": [
-    [
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF"
-    ]
-   ],
-   "s9": [
     [
      "OFF",
      "OFF",
@@ -361,17 +345,6 @@
      "OFF"
     ]
    ],
-   "s9": [
-    [
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF"
-    ]
-   ],
    "s10": [
     [
      "OFF",
@@ -514,17 +487,6 @@
    "s8": [
     [
      "2:00 PM - 12:00 AM",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF"
-    ]
-   ],
-   "s9": [
-    [
-     "OFF",
      "OFF",
      "OFF",
      "OFF",
@@ -676,17 +638,6 @@
     [
      "11:00 AM - 4:00 PM",
      "11:00 AM - 4:00 PM",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF",
-     "OFF"
-    ]
-   ],
-   "s9": [
-    [
-     "OFF",
-     "OFF",
      "OFF",
      "OFF",
      "OFF",
