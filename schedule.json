@@ -59,12 +59,12 @@
   {
    "id": "s1792261629219",
    "team": "FOH",
-   "name": "HARPREET KAUR"
+   "name": "HARPREET KAUR (TRAINING)"
   },
   {
    "id": "s1792262131612",
    "team": "FOH",
-   "name": "RAJBHARAT"
+   "name": "RAJBHARAT (TRAINING)"
   }
  ],
  "weeks": {
@@ -627,18 +627,18 @@
     [
      "OFF",
      "OFF",
-     "11:00 AM - 8:00 PM",
+     "OFF",
      "OFF",
      "OFF",
      "10:00 PM - 3:00 AM",
-     "8:00 PM - 2:00 AM"
+     "OFF"
     ]
    ],
    "s8": [
     [
-     "11:00 AM - 4:00 PM",
-     "11:00 AM - 4:00 PM",
      "OFF",
+     "11:00 AM - 6:00 PM",
+     "11:00 AM - 8:00 PM",
      "OFF",
      "OFF",
      "OFF",
@@ -647,13 +647,22 @@
    ],
    "s10": [
     [
-     "OFF",
+     "8:00 PM - 2:00 AM",
      "OFF",
      "8:00 PM - 2:00 AM",
      "OFF",
      "8:00 PM - 3:00 AM",
      "OFF",
      "8:00 PM - 2:00 AM"
+    ],
+    [
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF"
     ]
    ],
    "s11": [
@@ -661,7 +670,7 @@
      "OFF",
      "OFF",
      "OFF",
-     "TBA",
+     "11:00 AM - 5:00 PM",
      "11:00 AM - 6:00 PM",
      "11:00 AM - 6:00 PM",
      "OFF"
@@ -699,12 +708,12 @@
    "s1792261629219": [
     [
      "OFF",
+     "OFF",
+     "OFF",
      "11:00 AM - 4:00 PM",
      "OFF",
-     "11:00 AM - 4:00 PM",
      "OFF",
-     "OFF",
-     "OFF"
+     "9:00 PM - 2:00 AM"
     ],
     [
      "9:00 PM - 2:00 AM",
