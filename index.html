@@ -198,21 +198,34 @@ function SC(){var e=$('cap'),h=e.scrollHeight*1180/Math.max(e.offsetWidth,1);ret
 var PK='bw-payroll',P={rates:{},sales:{},target:30,ot:false};
 try{P=Object.assign(P,JSON.parse(localStorage.getItem(PK))||{})}catch(e){}
 function psave(){try{localStorage.setItem(PK,JSON.stringify(P))}catch(e){}}
+var PO=false;
+function cost(W,s){var h=(W[s.id]||[]).reduce(function(a,l){return a+l.reduce(function(b,v){return b+hrs(v)},0)},0),r=+P.rates[s.id]||0;return{h:h,c:r*(P.ot?Math.min(h,44)+1.5*Math.max(h-44,0):h)}}
+function wk(k){var W=D.weeks[k];if(!W)return null;var h=0,c=0;D.staff.forEach(function(s){var x=cost(W,s);h+=x.h;c+=x.c});return{h:h,c:c}}
 function payRender(){
  var el=$('pay');el.style.display=mgr?'':'none';if(!mgr)return;
  var W=D.weeks[key()];
- if(!W){el.innerHTML='<h3>Payroll</h3><div class="empty">No schedule for this week</div>';return}
+ if(!W){el.innerHTML='<h3>Payroll % calculator</h3><div class="empty">No schedule for this week</div>';return}
  var rows='',th=0,tc=0;
- D.staff.forEach(function(s){
-  var h=(W[s.id]||[]).reduce(function(a,l){return a+l.reduce(function(b,v){return b+hrs(v)},0)},0),r=+P.rates[s.id]||0,
-  c=r*(P.ot?Math.min(h,44)+1.5*Math.max(h-44,0):h);th+=h;tc+=c;
-  rows+='<tr><td class="pn">'+esc(s.name)+'</td><td>'+r1(h)+'</td><td><input type="number" min="0" step="0.01" data-r="'+s.id+'" value="'+(P.rates[s.id]||'')+'" placeholder="0.00"></td><td>$'+c.toFixed(2)+'</td></tr>'});
- var sales=+P.sales[key()]||0,pct=sales>0?tc/sales*100:null,tg=+P.target||0;
- el.innerHTML='<h3>Payroll % calculator</h3><div class="pb"><div class="pf"><div><label>Sales previous week ($)</label><input type="number" min="0" step="0.01" data-sales="1" value="'+(sales||'')+'" placeholder="0.00"></div><div><label>Target payroll %</label><input type="number" min="0" step="0.1" data-target="1" value="'+(tg||'')+'" placeholder="30"></div><label style="display:flex;gap:6px;align-items:center;margin:0;letter-spacing:.04em;text-transform:none;font-size:14px;color:#111"><input type="checkbox" data-ot="1"'+(P.ot?' checked':'')+'> Overtime over 44 h/week at 1.5×</label></div>'+
+ D.staff.forEach(function(s){var x=cost(W,s);th+=x.h;tc+=x.c;
+  rows+='<tr><td class="pn">'+esc(s.name)+'</td><td>'+r1(x.h)+'</td><td><input type="number" min="0" step="0.01" data-r="'+s.id+'" value="'+(P.rates[s.id]||'')+'" placeholder="0.00"></td><td>$'+x.c.toFixed(2)+'</td></tr>'});
+ var S=+P.sales[key()]||0,tg=+P.target||0,pd=new Date(ws.getFullYear(),ws.getMonth(),ws.getDate()-7),pw=wk(iso(pd)),
+ pct=S>0?tc/S*100:null,ppct=S>0&&pw?pw.c/S*100:null,missing=D.staff.filter(function(s){return !(+P.rates[s.id]>0)}).length;
+ el.innerHTML='<h3>Payroll % calculator</h3><div class="pb"><div class="pf"><div><label>Net sales — previous week ($)</label><input type="number" min="0" step="0.01" data-sales="1" value="'+(S||'')+'" placeholder="0.00"></div></div>'+
+ (missing?'<div class="hint" style="text-align:left;color:#a00;margin:0 0 8px">'+missing+' employee'+(missing>1?'s have':' has')+' no hourly rate yet — set it below.</div>':'')+
+ '<div class="big"><span>This week payroll <b>$'+tc.toFixed(2)+'</b></span><span>% of previous week sales <b>'+(pct==null?'—':pct.toFixed(1)+'%')+'</b></span></div>'+
+ (pw?'<div class="big"><span>Previous week payroll <b>$'+pw.c.toFixed(2)+'</b></span><span>% of those sales <b>'+(ppct==null?'—':ppct.toFixed(1)+'%')+'</b></span>'+(pct!=null&&ppct!=null?'<span>'+(pct>ppct?'▲ ':'▼ ')+Math.abs(pct-ppct).toFixed(1)+' pts vs previous week · $'+(tc-pw.c>=0?'+':'−')+Math.abs(tc-pw.c).toFixed(2)+'</span>':'')+'</div>':'')+
+ (pct!=null&&tg?'<div class="hint" style="text-align:left">'+(pct>tg?'Over':'Within')+' your '+tg+'% target ('+Math.abs(pct-tg).toFixed(1)+' pts '+(pct>tg?'over':'under')+')</div>':'')+
+ '<details style="margin-top:14px"'+(PO?' open':'')+'><summary style="cursor:pointer;font-weight:600;text-transform:uppercase;letter-spacing:.08em">Hourly rates &amp; settings — set once, used for every week</summary><div style="margin-top:10px">'+
+ '<div class="pf"><div><label>Target payroll %</label><input type="number" min="0" step="0.1" data-target="1" value="'+(tg||'')+'" placeholder="30"></div><label style="display:flex;gap:6px;align-items:center;margin:0;letter-spacing:.04em;text-transform:none;font-size:14px;color:#111"><input type="checkbox" data-ot="1"'+(P.ot?' checked':'')+'> Overtime over 44 h/week at 1.5×</label></div>'+
  '<div class="scroll"><table><tr><th>Name</th><th>Hours</th><th>Rate ($/hr)</th><th>Cost</th></tr>'+rows+'<tr class="total"><td>TOTAL</td><td>'+r1(th)+'</td><td></td><td>$'+tc.toFixed(2)+'</td></tr></table></div>'+
- '<div class="big"><span>Payroll cost <b>$'+tc.toFixed(2)+'</b></span><span>Payroll % of previous week\'s sales <b>'+(pct==null?'—':pct.toFixed(1)+'%')+'</b></span>'+(pct!=null&&tg?'<span>'+(pct>tg?'Over target by '+(pct-tg).toFixed(1)+' pts':'Within target ('+(tg-pct).toFixed(1)+' pts under)')+'</span>':'')+'</div>'+
- '<div class="hint" style="text-align:left">Rates, sales and target are saved on this device only and are never published to GitHub.</div></div>';
+ '<div class="pf" style="margin-top:10px"><button class="btn" data-bk="save">Back up rates</button><button class="btn" data-bk="load">Restore rates</button></div></div></details>'+
+ '<div class="hint" style="text-align:left">Rates and sales are saved on this device only and are never published to GitHub. Back up the rates if you use a new phone or clear your browser data.</div></div>';
 }
+$('pay').addEventListener('toggle',function(e){PO=e.target.open},true);
+$('pay').onclick=function(e){var b=e.target.dataset.bk;if(!b)return;
+ if(b==='save')dl(new Blob([JSON.stringify({rates:P.rates,target:P.target,ot:P.ot})],{type:'application/json'}),'payroll-rates-backup.json');
+ else{var f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=function(){var r=new FileReader();r.onload=function(){try{var j=JSON.parse(r.result);if(j.rates){Object.assign(P.rates,j.rates);if(j.target)P.target=j.target;if('ot' in j)P.ot=!!j.ot;psave();payRender()}}catch(x){}};r.readAsText(f.files[0])};f.click()}};
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 $('pay').onchange=function(e){var d=e.target.dataset;
  if(d.r)P.rates[d.r]=parseFloat(e.target.value)||0;
  else if(d.sales)P.sales[key()]=parseFloat(e.target.value)||0;
